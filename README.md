@@ -4,54 +4,56 @@ A nocturnal-editorial personal site starter for [Nuxt 4](https://nuxt.com), buil
 
 > The demo content is **fictional** — a musician named "Naya Arunika" who doesn't exist. Every page is replaceable; the starter is general-purpose (writers, designers, developers, freelancers, ...).
 
-## Quick start
+## Quick Start
 
-1. **Scaffold a new project from this template.** On GitHub, click **Use this template → Create new repository**, then clone your copy. (Or clone this repo directly and reset the remote to yours.)
-2. **Install** — Bun is recommended, but npm/pnpm/yarn all work:
+Scaffold a new project from this template:
 
-   ```bash
-   bun install
-   ```
+```bash
+npx giget gh:sewadahapp/selaras-blog my-blog
+cd my-blog && bun install && bun run dev
+```
 
-3. **Run it:**
+Prefer GitHub? Use **Use this template** on the repo, clone your copy, then `bun install && bun run dev`. (npm/pnpm/yarn work everywhere Bun is mentioned — locks ship as `bun.lock` for Bun users, `package.json` for the rest.)
 
-   ```bash
-   bun run dev     # http://localhost:3000
-   ```
+> Once this template is accepted into the [official Nuxt templates registry](https://github.com/nuxt/starter/tree/templates/templates), the shorter form becomes available too: `npm create nuxt@latest -- -t selaras-blog`.
 
-4. **Make it yours** — start with your identity in `app/app.config.ts`:
+Start with your identity in `app/app.config.ts`:
 
-   ```ts
-   export default defineAppConfig({
-     site: {
-       name: 'Your Name',              // shown in header, bylines, footer
-       shortName: 'You',
-       description: 'One sentence about you.',
-       location: 'Wherever',
-       email: 'you@example.com',       // used by the contact page CTA
-     },
-     // ...Selaras theme + icon overrides below
-   })
-   ```
+```ts
+export default defineAppConfig({
+  site: {
+    name: 'Your Name',              // shown in header, bylines, footer
+    shortName: 'You',
+    description: 'One sentence about you.',
+    location: 'Wherever',
+    email: 'you@example.com',       // used by the contact page CTA
+  },
+  // ...Selaras theme + icon overrides below
+})
+```
 
-5. **Write your first post** — drop a Markdown file into `content/journal/`:
+Then write your first post — drop a Markdown file into `content/journal/`:
 
-   ```md
-   ---
-   title: My first note
-   description: What this note is about, in one line.
-   date: 2026-01-15
-   category: Notes
-   readingTime: 4 min read
-   cover: /images/your-photo.jpg        # optional
-   coverAlt: 'What the photo shows. Your own photo — credit optional.'
-   ---
+```md
+---
+title: My first note
+description: What this note is about, in one line.
+date: 2026-01-15
+category: Notes
+readingTime: 4 min read
+cover: /images/your-photo.jpg        # optional
+coverAlt: 'What the photo shows. Your own photo — credit optional.'
+---
 
-   Body copy in plain Markdown. Inline images get captioned figures
-   automatically; type/blocks render through Selaras prose components.
-   ```
+Body copy in plain Markdown. Inline images get captioned figures
+automatically; type/blocks render through Selaras prose components.
+```
 
-6. **Ship it:** `bun run generate` → deploy `.output/public` (see [Deployment](#deployment)).
+## Deploy your own
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsewadahapp%2Fselaras-blog&project-name=selaras-blog)
+
+Vercel deploys with the default SSR build (`bun run build`). For a fully static site instead, set the build command to `bun run generate` and the output directory to `.output/public` — any other static host (Netlify, Cloudflare Pages, GitHub Pages) works the same way: upload `.output/public` and set your **404 fallback** to `404.html` so themed error pages serve with a real 404 status.
 
 ## Project map
 
@@ -83,7 +85,3 @@ bun run generate   # fully static site → .output/public (recommended)
 bun run build      # SSR build
 bun run preview    # preview the production output
 ```
-
-## Deployment
-
-Any static host works — upload `.output/public`. Set your host's **404 fallback** to the generated `404.html` so themed error pages serve correctly with a 404 status.
