@@ -4,51 +4,86 @@ A nocturnal-editorial personal site starter for [Nuxt 4](https://nuxt.com), buil
 
 > The demo content is **fictional** — a musician named "Naya Arunika" who doesn't exist. Every page is replaceable; the starter is general-purpose (writers, designers, developers, freelancers, ...).
 
-## Features
+## Quick start
 
-- **Markdown-first** — journal, projects, music, standalone pages all live in `content/` as Markdown files with typed collections (`content.config.ts`).
-- **Selaras design system** — semantic components (`SButton`, `SCard`, `SContainer`, ...) with theme and icon overrides in `app/app.config.ts`.
-- **Nocturnal editorial theme** — dark reading room, one electric accent, credited photography, editorial layouts per section.
-- **Static-first** — `bun run generate` produces a fully static site; an SSR'd `404.html` ships themed "not found" pages even without JavaScript.
-- **Runtime-neutral code** — Bun-friendly, but npm/pnpm work equally well.
+1. **Scaffold a new project from this template.** On GitHub, click **Use this template → Create new repository**, then clone your copy. (Or clone this repo directly and reset the remote to yours.)
+2. **Install** — Bun is recommended, but npm/pnpm/yarn all work:
 
-## Setup
+   ```bash
+   bun install
+   ```
 
-Install dependencies (Bun recommended, locks are in `bun.lock`):
+3. **Run it:**
+
+   ```bash
+   bun run dev     # http://localhost:3000
+   ```
+
+4. **Make it yours** — start with your identity in `app/app.config.ts`:
+
+   ```ts
+   export default defineAppConfig({
+     site: {
+       name: 'Your Name',              // shown in header, bylines, footer
+       shortName: 'You',
+       description: 'One sentence about you.',
+       location: 'Wherever',
+       email: 'you@example.com',       // used by the contact page CTA
+     },
+     // ...Selaras theme + icon overrides below
+   })
+   ```
+
+5. **Write your first post** — drop a Markdown file into `content/journal/`:
+
+   ```md
+   ---
+   title: My first note
+   description: What this note is about, in one line.
+   date: 2026-01-15
+   category: Notes
+   readingTime: 4 min read
+   cover: /images/your-photo.jpg        # optional
+   coverAlt: 'What the photo shows. Your own photo — credit optional.'
+   ---
+
+   Body copy in plain Markdown. Inline images get captioned figures
+   automatically; type/blocks render through Selaras prose components.
+   ```
+
+6. **Ship it:** `bun run generate` → deploy `.output/public` (see [Deployment](#deployment)).
+
+## Project map
+
+| Path | What lives there |
+|---|---|
+| `content/journal/` | Blog posts (Collection: `journal`) |
+| `content/projects/` | Work archive entries (Collection: `projects`) |
+| `content/music/` | Demo-shaped section — releases for the musician; repurpose or delete (Collection: `music`) |
+| `content/*.md` | Standalone pages (`about.md`, `contact.md`), rendered as editorial prose pages |
+| `app/pages/` | Route components per section, composed with Selaras components |
+| `app/components/` | Editorial building blocks (byline, meta, TOC, post navigation, prose figure, waveform) |
+| `app/app.config.ts` | Site identity + Selaras component overrides + icon map |
+| `app/assets/css/main.css` | Static theme tokens (palette, fonts, page rules) |
+| `content.config.ts` | Content collections and their Zod schemas |
+
+## Day-to-day
+
+- **Sections you don't need:** delete your collection from `content.config.ts`, its Markdown folder, and its page folder (`app/pages/music/` etc.), then remove its link from the navigation in `app/layouts/default.vue`. The remaining pages handle empty content gracefully — an empty `journal/` folder just shows a friendly "nothing here yet" state.
+- **Images:** demo photography is borrowed from Wikimedia Commons (CC BY / CC BY-SA / CC0), credited inline and in `public/images/credits.json` — swap all of it for your own before publishing.
+- **Theme & icons:** the theme ships [Lucide](https://lucide.dev) via `@iconify-json/lucide`. Selaras components take semantic icon slots, remapped in `app/app.config.ts` under `selaras.icons` — point them at any Iconify collection (install e.g. `@iconify-json/tabler` and update `serverBundle.collections` in `nuxt.config.ts`).
+
+## Commands
 
 ```bash
-bun install
+bun run dev        # development server
+bun run lint       # eslint
+bun run typecheck  # nuxt typecheck
+bun run generate   # fully static site → .output/public (recommended)
+bun run build      # SSR build
+bun run preview    # preview the production output
 ```
-
-Start the development server:
-
-```bash
-bun run dev
-```
-
-## Production
-
-```bash
-# fully static site (recommended)
-bun run generate   # output in .output/public
-
-# or a SSR build
-bun run build
-```
-
-Preview the static output locally:
-
-```bash
-bun run preview
-```
-
-## Making it yours
-
-1. **Replace the demo content** — edit files under `content/` or swap them out entirely. Collections are defined in `content.config.ts`; remove the `music` or `projects` collections you don't need.
-2. **Swap the imagery** — all demo photographs are borrowed from Wikimedia Commons (CC BY / CC BY-SA / CC0), credited inline in the content and in `public/images/credits.json`. Replace them with your own before publishing.
-3. **Adjust the theme** — colors, surfaces and component recipes are overridden in `app/assets/css/main.css` and `app/app.config.ts`.
-4. **Swap the icon set** — the template ships [Lucide](https://lucide.dev) via `@iconify-json/lucide`. Selaras components take semantic icon slots; they're remapped in `app/app.config.ts` (`selaras.icons`) — point them at any Iconify collection you like (install e.g. `@iconify-json/tabler` and update `nuxt.config.ts`'s `serverBundle.collections`).
 
 ## Deployment
 
-Any static host works (Netlify, Cloudflare Pages, GitHub Pages, ...): upload `.output/public`. Set your host's **404 fallback** to the generated `404.html` so themed error pages serve correctly with a 404 status.
+Any static host works — upload `.output/public`. Set your host's **404 fallback** to the generated `404.html` so themed error pages serve correctly with a 404 status.
