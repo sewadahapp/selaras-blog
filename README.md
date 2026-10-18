@@ -6,18 +6,17 @@ A nocturnal-editorial personal site starter for [Nuxt 4](https://nuxt.com), buil
 
 ## Quick Start
 
-Scaffold a new project from this template:
+Scaffold a new project from this template (name the directory whatever you like):
 
 ```bash
-npx giget gh:sewadahapp/selaras-blog my-blog
-cd my-blog && bun install && bun run dev
+npm create nuxt@latest -- -t github:sewadahapp/selaras-blog
 ```
 
-Prefer GitHub? Use **Use this template** on the repo, clone your copy, then `bun install && bun run dev`. (npm/pnpm/yarn work everywhere Bun is mentioned — locks ship as `bun.lock` for Bun users, `package.json` for the rest.)
+The scaffolder prompts for a package manager (Bun recommended) and Git setup, then installs and drops a ready-to-edit copy of this template. Prefer GitHub's own flow? Use **Use this template** on the repo, clone your copy, then `bun install && bun run dev`. (npm/pnpm/yarn work everywhere Bun is mentioned — locks ship as `bun.lock` for Bun users, `package.json` for the rest.)
 
 > Once this template is accepted into the [official Nuxt templates registry](https://github.com/nuxt/starter/tree/templates/templates), the shorter form becomes available too: `npm create nuxt@latest -- -t selaras-blog`.
 
-Start with your identity in `app/app.config.ts`:
+Then make it yours — start with your identity in `app/app.config.ts`:
 
 ```ts
 export default defineAppConfig({
