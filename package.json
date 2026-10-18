@@ -1,0 +1,39 @@
+{
+  "name": "selaras-blog",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.3.2",
+  "engines": {
+    "node": ">=22.19.0",
+    "bun": ">=1.3.0"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@fontsource/barlow-condensed": "^5.3.0",
+    "@nuxt/content": "^3.16.1",
+    "@nuxt/eslint": "1.17.0",
+    "@sewadah/selaras": "^0.10.0",
+    "better-sqlite3": "^13.0.3",
+    "eslint": "^10.13.0",
+    "nuxt": "^4.6.1",
+    "tailwindcss": "^4.3.3",
+    "vue": "^3.5.43",
+    "vue-router": "^5.3.1",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@iconify-json/hugeicons": "^1.2.35",
+    "@iconify-json/lucide": "^1.2.145",
+    "typescript": "^5.9.3",
+    "vue-tsc": "^3.3.13"
+  }
+}
