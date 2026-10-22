@@ -13,7 +13,17 @@ export default defineNuxtConfig({
   icon: { serverBundle: { collections: ['lucide'] } },
   app: {
     baseURL: process.env.NUXT_APP_BASE_URL || '/',
-    head: { htmlAttrs: { lang: 'en' }, titleTemplate: '%s · Naya Arunika' },
+    head: {
+      htmlAttrs: { lang: 'en' },
+      titleTemplate: '%s · Naya Arunika',
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/svg+xml',
+          href: '/favicon.svg',
+        },
+      ],
+    },
   },
   // Server-render app/error.vue into 404.html at build time, so static hosts
   // serve a themed not-found page even before (or without) JavaScript.
